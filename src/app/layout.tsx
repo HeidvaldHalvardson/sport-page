@@ -3,6 +3,8 @@ import { Montserrat, Raleway } from 'next/font/google';
 import './styles/globals.css';
 import { Header } from '@/widgets/Header';
 
+import { TanstackQueryProvider } from './providers/TanstackQueryProvider';
+
 const montserrat = Montserrat({
   subsets: ['cyrillic', 'latin'],
   variable: '--font-montserrat',
@@ -26,8 +28,10 @@ export default function RootLayout({
       className={`${montserrat.variable} ${raleway.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-main-bg font-main">
-        <Header />
-        {children}
+        <TanstackQueryProvider>
+          <Header />
+          <main className="flex-grow-1">{children}</main>
+        </TanstackQueryProvider>
       </body>
     </html>
   );
