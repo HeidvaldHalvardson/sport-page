@@ -1,3 +1,5 @@
+import MainPage from '@/appPages/MainPage/MainPage';
+
 export default function Home() {
-  return <div>home</div>;
+  return <MainPage />;
 }

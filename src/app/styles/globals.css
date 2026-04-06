@@ -8,6 +8,8 @@
 @theme {
   --color-main-bg: #232829;
   --color-header-bg: #1d5b43;
+  --color-yellow-main: #fb0;
+  --color-gold-main: #fdb056;
 
   --font-main: var(--font-montserrat), sans-serif;
   --font-second: var(--font-raleway), sans-serif;
