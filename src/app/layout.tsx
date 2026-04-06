@@ -1,5 +1,7 @@
 import { Montserrat, Raleway } from 'next/font/google';
+
 import './styles/globals.css';
+import { Header } from '@/widgets/Header';
 
 const montserrat = Montserrat({
   subsets: ['cyrillic', 'latin'],
@@ -23,7 +25,10 @@ export default function RootLayout({
       lang="ru"
       className={`${montserrat.variable} ${raleway.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-main-bg font-main">
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
