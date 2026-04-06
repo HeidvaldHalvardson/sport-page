@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root {
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-raleway: "Raleway", sans-serif;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 500;
+  font-style: normal;
+  src: url('../fonts/Gilroy-Medium.woff2') format('woff2');
+  font-display: swap;
+}
+
+:root {
+  --font-family: var(--font-montserrat), sans-serif;
+  --second-family: var(--font-raleway), sans-serif;
+  --third-family: 'Gilroy', sans-serif;
+}
+
+body {
+  font-family: var(--font-family), sans-serif;
+}
