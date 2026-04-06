@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { totalTime } from '../model/constants';
 
 export const useTimer = () => {
   const [seconds, setSeconds] = useState(totalTime);
-  const [isBlink, setIsBlink] = useState(false);
 
   useEffect(() => {
     if (seconds <= 0) return;
@@ -16,9 +15,7 @@ export const useTimer = () => {
     return () => clearInterval(interval);
   }, [seconds]);
 
-  useEffect(() => {
-    setIsBlink(seconds <= 30 && seconds > 0);
-  }, [seconds]);
+  const isBlink = useMemo(() => seconds <= 30 && seconds > 0, [seconds]);
 
   const getColor = () => {
     if (seconds <= 0) return '#fff';
@@ -29,7 +26,7 @@ export const useTimer = () => {
   const formatTime = (totalSeconds: number) => {
     const mins = Math.floor(totalSeconds / 60);
     const secs = totalSeconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${mins.toString().padStart(2, '0')} : ${secs.toString().padStart(2, '0')}`;
   };
 
   return {

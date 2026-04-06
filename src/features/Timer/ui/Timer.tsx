@@ -19,7 +19,7 @@ export const Timer = (props: TimerProps) => {
       <TimerStart />
 
       <span
-        className={`font-bold text-[clamp(28px,8vw,40px)] leading-none ${isBlink ? 'animate-pulse' : ''}`}
+        className={`font-bold font-second text-[clamp(28px,8vw,40px)] py-1 leading-none ${isBlink ? 'animate-pulse' : ''}`}
       >
         {currentTime}
       </span>
