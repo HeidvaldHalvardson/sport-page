@@ -29,7 +29,7 @@ export const TariffCard = (props: TariffCardProps) => {
       {tariff.is_best && (
         <div className="absolute top-1 right-4 md:top-2.5 md:right-5 text-gold-main">хит!</div>
       )}
-      {discountPercent && (
+      {discountPercent && !isEnd && (
         <div
           className={`bg-[#fd5656] rounded-b-[8px] font-[500] px-2 py-1 w-fit absolute top-0 text-white ri text-[clamp(13px,4vw,22px)] ${tariff.is_best ? 'right-14' : 'right-8'} lg:right-0 lg:left-14`}
         >

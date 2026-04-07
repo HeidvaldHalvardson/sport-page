@@ -18,7 +18,7 @@ export const Button = (props: ButtonProps) => {
 
   return (
     <button
-      className={`${className} rounded-[20px] p-5 transition-colors duration-200 font-bold text-[18px] md:text-[20px] w-full ${themeStyles[theme]}`}
+      className={`${className} rounded-[20px] cursor-pointer p-5 transition-colors duration-200 font-bold text-[18px] md:text-[20px] w-full ${themeStyles[theme]}`}
       {...otherProps}
     >
       {children}
