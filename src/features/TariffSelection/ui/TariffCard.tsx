@@ -1,3 +1,5 @@
+import { useTimerContext } from '@/features/Timer';
+
 import type { Tariff } from '../model/types';
 
 interface TariffCardProps {
@@ -8,6 +10,7 @@ interface TariffCardProps {
 }
 
 export const TariffCard = (props: TariffCardProps) => {
+  const { isEnd } = useTimerContext();
   const { className = '', tariff, isChecked, onChange } = props;
 
   const discountPercent = Math.round(
@@ -40,13 +43,23 @@ export const TariffCard = (props: TariffCardProps) => {
           className={`lg:flex flex-col ${tariff.is_best ? 'items-end' : 'lg:grid-cols-1 items-center'}`}
         >
           {tariff.period}
-          <div className="w-fit">
+          <div className="w-fit relative">
             <p
-              className={`text-[clamp(30px,5vw,50px)] font-[600] ${tariff.is_best ? 'text-gold-main' : 'text-white'}`}
+              className={`transition-all duration-500 ease-out ${
+                isEnd
+                  ? 'opacity-0 translate-y-4 absolute'
+                  : `relative opacity-100 translate-y-0 text-[clamp(30px,5vw,50px)] font-[600] ${tariff.is_best ? 'text-gold-main' : 'text-white'}`
+              }`}
             >
               {tariff.price}&nbsp;₽
             </p>
-            <p className="text-[clamp(14px,4vw,24px)] text-right text-[#919191] font-normal line-through">
+            <p
+              className={`transition-all duration-500 ease-out ${
+                isEnd
+                  ? `relative opacity-100 translate-y-0 text-[clamp(30px,5vw,50px)] font-[600] ${tariff.is_best ? 'text-gold-main' : 'text-white'}`
+                  : 'opacity-100 text-[clamp(14px,4vw,24px)] text-right text-[#919191] font-normal line-through'
+              }`}
+            >
               {tariff.full_price}&nbsp;₽
             </p>
           </div>
