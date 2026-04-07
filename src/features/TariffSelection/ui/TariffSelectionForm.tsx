@@ -17,13 +17,26 @@ export const TariffSelectionForm = (props: TariffSelectionFormProps) => {
   const { className = '' } = props;
   const { tariffs, onChangeTariff, checkedTariff } = useTariffs();
   const [isConfirm, setIsConfirm] = useState(true);
+  const [isConfirmError, setIsConfirmError] = useState(false);
 
   if (!tariffs || !tariffs?.length) {
     return <span className="text-white">Тарифы не найдены</span>;
   }
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isConfirm) {
+      setIsConfirmError(true);
+      return;
+    }
+    setIsConfirmError(false);
+  };
+
   return (
-    <form className={`${className}`}>
+    <form
+      className={`${className}`}
+      onSubmit={handleSubmit}
+    >
       <ul className="grid grid-cols-1 lg:grid-cols-3 gap-1.5 md:gap-2.5 lg:gap-3.5">
         {tariffs.map((tariff, index) => {
           return (
@@ -46,7 +59,9 @@ export const TariffSelectionForm = (props: TariffSelectionFormProps) => {
         </p>
       </div>
       <label className="flex gap-2 items-center leading-tight lg:w-2/3 mb-4">
-        <div className="w-[30px] h-[30px] rounded-[5px] border-1 border-[#606566] flex flex-shrink-0 justify-center items-center">
+        <div
+          className={`w-[30px] h-[30px] rounded-[5px] border-1 flex flex-shrink-0 justify-center items-center ${isConfirmError ? 'border-red-500' : 'border-[#606566]'}`}
+        >
           {isConfirm ? <CheckSvg /> : null}
         </div>
         <p className="text-[#cdcdcd] text-[clamp(12px,2vw,16px)]">
@@ -70,11 +85,14 @@ export const TariffSelectionForm = (props: TariffSelectionFormProps) => {
           type="checkbox"
           name="confirm"
           checked={isConfirm}
-          onChange={() => setIsConfirm((prev) => !prev)}
+          onChange={() => {
+            setIsConfirm((prev) => !prev);
+            setIsConfirmError(false);
+          }}
         />
       </label>
       <Button
-        className="lg:max-w-[350px] mb-4"
+        className="lg:max-w-[350px] mb-4 animate-pulse"
         type="submit"
       >
         Купить
