@@ -1,6 +1,7 @@
 import { Montserrat, Raleway } from 'next/font/google';
 
 import './styles/globals.css';
+import { TimerProvider } from '@/features/Timer';
 import { Header } from '@/widgets/Header';
 
 import { TanstackQueryProvider } from './providers/TanstackQueryProvider';
@@ -29,8 +30,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-main-bg font-main">
         <TanstackQueryProvider>
-          <Header />
-          <main className="flex-grow-1">{children}</main>
+          <TimerProvider>
+            <Header />
+            <main className="flex-grow-1">{children}</main>
+          </TimerProvider>
         </TanstackQueryProvider>
       </body>
     </html>

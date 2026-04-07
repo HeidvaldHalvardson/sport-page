@@ -1,7 +1,6 @@
 'use client';
+import { useTimerContext } from '@/features/Timer';
 import TimerStart from '@/shared/assets/timer-star.svg';
-
-import { useTimer } from '../hooks/useTimer';
 
 interface TimerProps {
   className?: string;
@@ -9,7 +8,7 @@ interface TimerProps {
 
 export const Timer = (props: TimerProps) => {
   const { className = '' } = props;
-  const { currentTime, isBlink, color } = useTimer();
+  const { currentTime, isBlink, color } = useTimerContext();
 
   return (
     <div

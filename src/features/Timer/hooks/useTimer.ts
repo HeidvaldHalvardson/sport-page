@@ -16,6 +16,7 @@ export const useTimer = () => {
   }, [seconds]);
 
   const isBlink = useMemo(() => seconds <= 30 && seconds > 0, [seconds]);
+  const isEnd = seconds <= 0;
 
   const getColor = () => {
     if (seconds <= 0) return '#fff';
@@ -33,5 +34,6 @@ export const useTimer = () => {
     currentTime: formatTime(seconds),
     isBlink,
     color: getColor(),
+    isEnd,
   };
 };
